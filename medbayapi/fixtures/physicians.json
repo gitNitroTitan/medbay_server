@@ -1,0 +1,26 @@
+[
+    {
+        "model": "medbayapi.physician",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "name": "Dr. Feelgood",
+            "specialty": "Pain Management",
+            "email": "drfeelgood@email.com",
+            "location": "New York",
+            "phone_number": "251-555-8888"
+        }
+    },
+    {
+        "model": "medbayapi.physician",
+        "pk": 2,
+        "fields": {
+            "user": 2,
+            "name": "Dr. Pepper",
+            "specialty": "General Practitioner",
+            "email": "drpepper@email.com",
+            "location": "Alabama",
+            "phone_number": "251-555-8888"
+        }
+    }
+]
