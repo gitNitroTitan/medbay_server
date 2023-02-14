@@ -4,7 +4,7 @@ from .users import User
 class Physician(models.Model):
     """d"""
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_physician')
     name = models.CharField(max_length=50)
     specialty = models.CharField(max_length=50)
     email = models.EmailField(max_length=50)

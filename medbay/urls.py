@@ -18,10 +18,13 @@ from django.contrib import admin
 from django.conf.urls import include
 from django.urls import path
 from medbayapi.views import check_user, register_user
-from medbayapi.views import UserView
+from medbayapi.views import UserView, PhysicianView, RecordView
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'users', UserView, 'user')
+router.register(r'physicians', PhysicianView, 'physician')
+router.register(r'records', RecordView, 'record')
+
 
 urlpatterns = [
     path('register', register_user),

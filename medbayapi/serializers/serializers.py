@@ -16,8 +16,8 @@ class PhysicianSerializer(ModelSerializer):
     """
     class Meta:
         model = Physician
-        fields = ('id', 'user', 'name', 'specialty', 'email',
-                'image_url', 'location', 'phone_number')
+        fields = ('id','name', 'specialty', 'email',
+                'location', 'phone_number', 'user_id')
         depth = 2
 
 class UserSerializer(ModelSerializer):

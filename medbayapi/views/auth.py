@@ -4,7 +4,6 @@ from medbayapi.serializers import UserSerializer
 from medbayapi.models import User
 
 
-
 @api_view(['POST'])
 def check_user(request):
     '''Checks to see if User has Associated User
@@ -24,7 +23,7 @@ def check_user(request):
         return Response(serializers.data)
 
     except:
-        data = { 'valid':False }
+        data = {'valid': False}
         return Response(data)
 
 @api_view(['POST'])
