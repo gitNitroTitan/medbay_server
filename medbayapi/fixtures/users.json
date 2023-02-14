@@ -1,0 +1,30 @@
+[
+    {
+        "model": "medbayapi.user",
+        "pk": 1,
+        "fields": {
+            "uid": 12345,
+            "name": "Happy Gilmore",
+            "age": 26,
+            "bio": "Rocking those hockey clubs against Shooter",
+            "image_url": "https://helios-i.mashable.com/imagery/articles/00G5CIrzO2ZXMsweNTjlFhU/hero-image.fill.size_1248x702.v1613559637.jpg",
+            "email": "gilmorehaphaphappy@email.com",
+            "location": "Gilmore Plantation",
+            "local_pharmacy": "Walgreens"
+        }
+    },
+    {
+        "model": "medbayapi.user",
+        "pk": 2,
+        "fields": {
+            "uid": 23456,
+            "name": "Obi Wan Kinobe",
+            "age": 55,
+            "bio": "From Jedi to Jedi Ghost and now we're here",
+            "image_url": "https://lumiere-a.akamaihd.net/v1/images/62bf0e03e8459d0001f4881b-image_71900d89.jpeg?region=192%2C0%2C1152%2C864",
+            "email": "obi1@gmail.com",
+            "location": "Stewjon",
+            "local_pharmacy": "Naboo Walmart"
+        }
+    }
+]

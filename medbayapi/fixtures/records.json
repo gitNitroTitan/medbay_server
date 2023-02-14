@@ -1,0 +1,26 @@
+[
+    {
+        "model": "medbayapi.record",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "physician": 1,
+            "name": "Demerol",
+            "dosage": "5mg",
+            "treatment": "Pain",
+            "date_prescribed": "4/10/2022"
+        }
+    },
+    {
+        "model": "medbayapi.record",
+        "pk": 2,
+        "fields": {
+            "user": 1,
+            "physician": 2,
+            "name": "Metformin",
+            "dosage": "2mg",
+            "treatment": "Diabetes",
+            "date_prescribed": "4/10/2022"
+        }
+    }
+]
