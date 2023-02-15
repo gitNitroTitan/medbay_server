@@ -7,7 +7,7 @@ class RecordSerializer(ModelSerializer):
     """
     class Meta:
         model = Record
-        fields = ('id', 'user', 'physician', 'name',
+        fields = ('id', 'user', 'name',
                   'dosage', 'treatment', 'date_prescribed')
         depth = 2
 
@@ -16,8 +16,8 @@ class PhysicianSerializer(ModelSerializer):
     """
     class Meta:
         model = Physician
-        fields = ('id','name', 'specialty', 'email',
-                'location', 'phone_number', 'user_id')
+        fields = ('id', 'user_id', 'record_id','name', 'specialty', 'email',
+                'location', 'phone_number')
         depth = 2
 
 class UserSerializer(ModelSerializer):

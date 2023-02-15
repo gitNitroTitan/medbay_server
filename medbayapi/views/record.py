@@ -28,9 +28,9 @@ class RecordView(ViewSet):
         """
         records = Record.objects.all()
 
-        physician = request.query_params.get('physician', None)
-        if physician is not None:
-            records = records.filter(physician=physician)
+        # physician = request.query_params.get('physician', None)
+        # if physician is not None:
+        #     records = records.filter(physician=physician)
         serializer = RecordSerializer(records, many=True)
 
         return Response(serializer.data)
@@ -42,14 +42,14 @@ class RecordView(ViewSet):
             Response -- JSON serialized comment instance
         """
         user = User.objects.get(pk=request.data["user"])
-        physician = Physician.objects.get(pk=request.data["physician"])
+        # physician = Physician.objects.get(pk=request.data["physician"])
 
         record = Record.objects.create(
             name=request.data["name"],
             dosage=request.data["dosage"],
             treatment=request.data["treatment"],
             date_prescribed=request.data["date_prescribed"],
-            physician=physician,
+            # physician=physician,
             user=user
         )
         serializer = RecordSerializer(record)
@@ -61,14 +61,14 @@ class RecordView(ViewSet):
         Returns:
             Response -- Empty body with 204 status code
         """
-        physician = Physician.objects.get(pk=request.data["physician_id"])
+        # physician = Physician.objects.get(pk=request.data["physician_id"])
 
         record = Record.objects.get(pk=pk)
         record.name = request.data["name"]
         record.dosage = request.data["dosage"]
         record.treatment = request.data["treatment"]
         record.date_prescribed = request.data["date_prescribed"]
-        physician = physician
+        # physician = physician
         record.save()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
 
