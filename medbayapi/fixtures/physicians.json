@@ -4,6 +4,7 @@
         "pk": 1,
         "fields": {
             "user": 1,
+            "record": 2,
             "name": "Dr. Feelgood",
             "specialty": "Pain Management",
             "email": "drfeelgood@email.com",
@@ -16,6 +17,7 @@
         "pk": 2,
         "fields": {
             "user": 2,
+            "record": 1,
             "name": "Dr. Pepper",
             "specialty": "General Practitioner",
             "email": "drpepper@email.com",

@@ -4,7 +4,6 @@
         "pk": 1,
         "fields": {
             "user": 1,
-            "physician": 1,
             "name": "Demerol",
             "dosage": "5mg",
             "treatment": "Pain",
@@ -16,7 +15,6 @@
         "pk": 2,
         "fields": {
             "user": 1,
-            "physician": 2,
             "name": "Metformin",
             "dosage": "2mg",
             "treatment": "Diabetes",
