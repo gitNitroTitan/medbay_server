@@ -5,6 +5,8 @@ from rest_framework import status
 from medbayapi.models import Physician, Record, User, PhysicianUser
 from medbayapi.serializers import PhysicianSerializer
 from rest_framework.decorators import action
+from rest_framework import generics
+
 
 class PhysicianView(ViewSet):
 
@@ -16,6 +18,9 @@ class PhysicianView(ViewSet):
     def list(self, request):
         physicians = Physician.objects.all()
 
+        user = request.query_params.get('user', None)
+        if user is not None:
+            physicians = physicians.filter(user_id=user)
         serializer = PhysicianSerializer(physicians, many=True)
         return Response(serializer.data)
 
@@ -23,7 +28,7 @@ class PhysicianView(ViewSet):
     def create(self, request):
         """Handle create requests for physician
         """
-        record = Record.objects.get(pk=request.data["record"])
+        # record = Record.objects.get(pk=request.data["record"])
         user = User.objects.get(pk=request.data["user"])
 
         physician = Physician.objects.create(
@@ -32,7 +37,7 @@ class PhysicianView(ViewSet):
                 email=request.data["email"],
                 location=request.data["location"],
                 phone_number=request.data["phone_number"],
-                record=record,
+                # record=record,
                 user=user
             )
         serializer = PhysicianSerializer(physician)
@@ -47,8 +52,8 @@ class PhysicianView(ViewSet):
         physician.location=request.data["location"]
         physician.phone_number=request.data["phone_number"]
 
-        record = Record.objects.get(pk=request.data["record"])
-        physician.record=record
+        # record = Record.objects.get(pk=request.data["record"])
+        # physician.record=record
         physician.save()
 
         return Response(None, status=status.HTTP_204_NO_CONTENT)
@@ -83,3 +88,10 @@ class PhysicianView(ViewSet):
         )
         physician_user.delete()
         return Response({'message': 'User removed'}, status=status.HTTP_204_NO_CONTENT)
+
+
+class PhysicianUserView(generics.ListCreateAPIView):
+  serializer_class = PhysicianSerializer
+  def get_queryset(self):
+    user_id = self.kwargs['user_id']
+    return Physician.objects.filter(user__id=user_id)
