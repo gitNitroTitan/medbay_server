@@ -28,7 +28,6 @@ class PhysicianView(ViewSet):
     def create(self, request):
         """Handle create requests for physician
         """
-        # record = Record.objects.get(pk=request.data["record"])
         user = User.objects.get(pk=request.data["user"])
 
         physician = Physician.objects.create(
@@ -37,7 +36,6 @@ class PhysicianView(ViewSet):
                 email=request.data["email"],
                 location=request.data["location"],
                 phone_number=request.data["phone_number"],
-                # record=record,
                 user=user
             )
         serializer = PhysicianSerializer(physician)
@@ -89,9 +87,8 @@ class PhysicianView(ViewSet):
         physician_user.delete()
         return Response({'message': 'User removed'}, status=status.HTTP_204_NO_CONTENT)
 
-
 class PhysicianUserView(generics.ListCreateAPIView):
-  serializer_class = PhysicianSerializer
-  def get_queryset(self):
-    user_id = self.kwargs['user_id']
-    return Physician.objects.filter(user__id=user_id)
+    serializer_class = PhysicianSerializer
+    def get_queryset(self):
+        user_id = self.kwargs['user']
+        return Physician.objects.filter(user__id=user_id)

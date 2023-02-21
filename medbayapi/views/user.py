@@ -55,6 +55,8 @@ class UserView(ViewSet):
         user.email=request.data['email']
         user.location=request.data['location']
         user.local_pharmacy=request.data['local_pharmacy']
+        user.save()
+
 
         return Response(None, status=status.HTTP_204_NO_CONTENT)
 
