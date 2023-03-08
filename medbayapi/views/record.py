@@ -1,14 +1,10 @@
 from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
-from rest_framework.response import Response
-from rest_framework import serializers, status
-from medbayapi.models import Physician, Record, User
-from rest_framework.decorators import action
 from rest_framework import generics
+from rest_framework.response import Response
+from rest_framework import status
+from medbayapi.models import Record, User
 from medbayapi.serializers import RecordSerializer
-from django.shortcuts import get_object_or_404
-
-
 class RecordView(ViewSet):
     """ Medbay Record view"""
 
@@ -28,11 +24,10 @@ class RecordView(ViewSet):
         """
         records = Record.objects.all()
 
-        # physician = request.query_params.get('physician', None)
-        # if physician is not None:
-        #     records = records.filter(physician=physician)
+        user = request.query_params.get('user', None)
+        if user is not None:
+            records = records.filter(user_id=user)
         serializer = RecordSerializer(records, many=True)
-
         return Response(serializer.data)
 
     def create(self, request):
@@ -42,14 +37,12 @@ class RecordView(ViewSet):
             Response -- JSON serialized comment instance
         """
         user = User.objects.get(pk=request.data["user"])
-        # physician = Physician.objects.get(pk=request.data["physician"])
 
         record = Record.objects.create(
             name=request.data["name"],
             dosage=request.data["dosage"],
             treatment=request.data["treatment"],
             date_prescribed=request.data["date_prescribed"],
-            # physician=physician,
             user=user
         )
         serializer = RecordSerializer(record)
@@ -68,7 +61,8 @@ class RecordView(ViewSet):
         record.dosage = request.data["dosage"]
         record.treatment = request.data["treatment"]
         record.date_prescribed = request.data["date_prescribed"]
-        # physician = physician
+        # physician = Physician.objects.get(pk=request.data["physician"])
+        # record.physician = physician
         record.save()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
 
@@ -77,3 +71,9 @@ class RecordView(ViewSet):
         record.delete()
 
         return Response(None, status=status.HTTP_204_NO_CONTENT)
+
+class RecordUserView(generics.ListCreateAPIView):
+    serializer_class = RecordSerializer
+    def get_queryset(self):
+        user_id = self.kwargs['user_id']
+        return Record.objects.filter(user__id=user_id)

@@ -13,14 +13,14 @@ class User(models.Model):
     def __str__(self):
         return self.name
 
-    # @property
-    # def hikes(self):
-    #     """user hikes"""
-    #     hikes = [hike for hike in self.user_hike.all()]
-    #     return hikes
-
     @property
     def physicians(self):
-        """user hikes"""
+        """user physicians"""
         physicians = [physician for physician in self.user_physician.all()]
         return [physicians]
+
+    @property
+    def records(self):
+        """user records"""
+        records = [record for record in self.user_record.all()]
+        return [records]
