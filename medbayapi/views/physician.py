@@ -2,7 +2,7 @@ from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import status
-from medbayapi.models import Physician, Record, User, PhysicianUser
+from medbayapi.models import Physician, User, PhysicianUser
 from medbayapi.serializers import PhysicianSerializer
 from rest_framework.decorators import action
 from rest_framework import generics

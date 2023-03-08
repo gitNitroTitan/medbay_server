@@ -1,14 +1,10 @@
 from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
-from rest_framework.response import Response
-from rest_framework import serializers, status
-from medbayapi.models import Physician, Record, User
-from rest_framework.decorators import action
 from rest_framework import generics
+from rest_framework.response import Response
+from rest_framework import status
+from medbayapi.models import Record, User
 from medbayapi.serializers import RecordSerializer
-from django.shortcuts import get_object_or_404
-
-
 class RecordView(ViewSet):
     """ Medbay Record view"""
 
